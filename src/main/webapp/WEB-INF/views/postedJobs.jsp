@@ -11,19 +11,15 @@
 <meta charset="ISO-8859-1">
 <title>Posted Jobs</title>
 <link href="<c:url value="./template/css/style.css" />" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 </head>
 <body>
 
-<!-- main div covers entire page -->
 	<div id="main">
 
-		<!-- box div at the center of page with glassify effect -->
 		<div id="searchUser-container">
 
 			<div>
 
-				<!-- div contaning navbar to navigate across the dashboard -->
 				<div class="navbar" id="navbar">
 
 					<a href="/springNaukriAssignment/welcome"> <i class="fas fa-home"></i>
@@ -32,24 +28,23 @@
 
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a
-							href="/springNaukriAssignment/postJob?username=${username}&email=${email}">
-							<i class="fas fa-sticky-note"></i> Post Jobs
+							href="/springNaukriAssignment/postJob?username=${username}">
+							<i class="fas fa-sticky-note"></i> Post a new Jobs
 						</a>
 					</sec:authorize>
 
 					<a
-						href="/springNaukriAssignment/joblist?username=${username}&email=${email}">
-						<i class='fas fa-list'></i> All Jobs
+						href="/springNaukriAssignment/jobList?username=${username}">
+						<i class='fas fa-list'></i>  Jobs available
 					</a>
 					
 					<sec:authorize access='hasAuthority("Employer")'>
-						<a href="/springNaukriAssignment/postedJobs?username=${username}&email=${email}">
-						<i class="fas fa-check-square"></i> My Jobs</a>
+						<a href="/springNaukriAssignment/postedJobs?username=${username}">
+						<i class="fas fa-check-square"></i> posted by me</a>
 					</sec:authorize>
 
 
-					<!-- logouts the users by destroying current user instance in local storage and redirectiong to index.html -->
-
+s
 					<form:form action="logout" method="POST" id="last-tag">
 						<input type="submit" value="logout">
 					</form:form>
@@ -83,12 +78,12 @@
 
 						<sec:authorize access='hasAuthority("Employer")'>
 							<td><a
-								href="/springNaukriAssignmentr/candidateList?username=${username}&email=${email}&id=${jobs.id}&name=${jobs.jobName}">
-								Candidate List</a>
+								href="/springNaukriAssignmentr/candidateList?username=${username}&id=${jobs.id}&name=${jobs.companyName}">
+								Candidates</a>
 								<p/>
 								<a
-								href="/springNaukriAssignment/deleteJob?username=${username}&email=${email}&id=${jobs.id}">
-								Delete Posting</a>
+								href="/springNaukriAssignment/deleteJob?username=${username}&id=${jobs.id}">
+								Delete</a>
 							</td>
 
 						</sec:authorize>

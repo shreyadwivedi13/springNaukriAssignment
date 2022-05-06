@@ -14,7 +14,7 @@
 <a href = "/springNaukriAssignment/postJob?username=${portalUser.username}">Show Employer panel</a>
 </sec:authorize>
 
-<a href = "/springNaukriAssignment/joblist?username=${portalUser.username}">Show candidate panel</a>
+<a href = "/springNaukriAssignment/jobList?username=${portalUser.username}">Show candidate panel</a>
 
 <form:form action = "logout" method = "POST">
 	<input type = "submit" value = "logout">

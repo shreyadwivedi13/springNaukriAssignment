@@ -11,21 +11,16 @@
 <meta charset="ISO-8859-1">
 <title>Candidate List</title>
 <link href="<c:url value="./template/css/style.css" />" rel="stylesheet">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 </head>
 <body>
 
-	<!-- main div covers entire page -->
 	<div id="main">
 
-		<!-- box div at the center of page with glassify effect -->
 		<div id="searchUser-container">
 			
 			
 			<div>
 
-				<!-- div contaning navbar to navigate across the dashboard -->
 				<div class="navbar" id="navbar">
 
 					<a href="/springNaukriAssignment/welcome"> <i class="fas fa-home"></i>
@@ -34,24 +29,20 @@
 
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a
-							href="/springNaukriAssignment/postJob?username=${username}&email=${email}">
-							<i class="fas fa-sticky-note"></i> Post Jobs
+							href="/springNaukriAssignment/postJob?username=${username}">
+							<i class="fas fa-sticky-note"></i> Post a new Job
 						</a>
 					</sec:authorize>
 
 					<a
-						href="/springNaukriAssignment/joblist?username=${username}&email=${email}">
-						<i class='fas fa-list'></i> All Jobs
+						href="/springNaukriAssignment/joblist?username=${username}">
+						<i class='fas fa-list'></i> Jobs available
 					</a>
 					
 					<sec:authorize access='hasAuthority("Employer")'>
-						<a href="/springNaukriAssignment/postedJobs?username=${username}&email=${email}">
-						<i class="fas fa-check-square"></i> My Jobs</a>
+						<a href="/springNaukriAssignment/postedJobs?username=${username}">
+						<i class="fas fa-check-square"></i> jobs posted by mee</a>
 					</sec:authorize>
-
-
-					<!-- logouts the users by destroying current user instance in local storage and redirectiong to index.html -->
-
 					<form:form action="logout" method="POST" id="last-tag">
 						<input type="submit" value="logout">
 					</form:form>
@@ -59,13 +50,12 @@
 				</div>
 			</div>
 				
-				<h2>Applications for ${jobName}</h2>
+				<h2>Applications for ${companyName}</h2>
 			
 			<table id="displayTable" style="margin-top: auto; margin-bottom: auto;">
 					<tr>
-					 <th>Candiate Id</th> 
+					 <th>CandidateId</th> 
 					 <th>CandidateUsername</th>
-						<th>CandidateEmail</th> 
 						<th>Job Id</th>
 					
 					</tr>
@@ -74,7 +64,6 @@
 						<tr>
 							<td>${jobs.id}</td>
 							<td>${jobs.candidateUsername}</td>
-							<td>${jobs.candidateEmail}</td>
 							<td>${jobs.jobid}</td>
 
 		

@@ -8,8 +8,7 @@ import javax.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-//setting up the table name 
-@Table(name = "appliedJobs")
+@Table(name = "applied_jobs")// table name= applied jobs
 public class AppliedJobs {
 
 	@Id

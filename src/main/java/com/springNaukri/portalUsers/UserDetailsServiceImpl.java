@@ -15,7 +15,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     	PortalUser portalUser = PortalUserRepository.getUserByUsername(username);
          
         if (portalUser == null) {
-            throw new UsernameNotFoundException("Could not find user");
+            throw new UsernameNotFoundException("user not found");
         }
          
         return new MyUserDetails(portalUser);

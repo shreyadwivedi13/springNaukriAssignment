@@ -23,7 +23,7 @@ candidate Username:
 <form:input path="candidateUsername" value="${username}" disable="true" />
 <p>apply job .jsp</p>
 <input type ="submit" value="apply">
-<a href="/springNaukriAssignment/jobList?username=${username}">all jobs?</a>
+<a href="/springNaukriAssignment/jobList?username=${username}">jobs list?</a>
 </form:form>
 </div></div>
 	</div>

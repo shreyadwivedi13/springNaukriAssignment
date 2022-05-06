@@ -44,41 +44,33 @@ public class JobController {
 	public String saveCandidate(@ModelAttribute("postedJobs") PostedJobs postedJobs,
 			RedirectAttributes redirectAttributes) {
 
-		// saves the attributes to the url params
 		redirectAttributes.addAttribute("username", postedJobs.getEmployerUsername());
 		
 
-		// savs the password
 		postedJobsService.save(postedJobs);
 
 		return "redirect:/postJob";
 	}
 
-	// maps to display the joblist
 	@GetMapping("/jobList")
-	public ModelAndView showjoblist(@RequestParam String username, @RequestParam String email) {
+	public ModelAndView showjoblist(@RequestParam String username) {
 
-		// gets the list of all jobs
 		List<PostedJobs> listJobs = postedJobsService.listAll();
-		ModelAndView mav = new ModelAndView("joblist");
-		// add attributes from the config urls
+		ModelAndView mav = new ModelAndView("jobList");
 		mav.addObject("listJobs", listJobs);
 		mav.addObject("username", username);
 		return mav;
 
 	}
 
-	// maps to apply job accessed by the job seeker
 	@GetMapping("/applyJob")
 	public String applyJob(Map<String, Object> model, @RequestParam String username,
-			@RequestParam Long id, @RequestParam String jobName) {
+			@RequestParam Long id, @RequestParam String position) {
 
-		// adds attributes from the url params
 		model.put("username", username);
 		model.put("id", id);
-		model.put("jobName", jobName);
+		model.put("position", position);
 
-		// sets the obejct from the form
 		AppliedJobs appliedJobs = new AppliedJobs();
 		model.put("appliedJobs", appliedJobs);
 
@@ -86,66 +78,52 @@ public class JobController {
 
 	}
 
-	// maps to post job application
 	@RequestMapping(value = "/process-jobapplication", method = RequestMethod.POST)
 	public String applyJob(@ModelAttribute("appliedJobs") AppliedJobs appliedJobs,
 			RedirectAttributes redirectAttributes) {
 
-		// saves the applied jobs
 		appliedJobsService.save(appliedJobs);
 
-		// adds param to urls
 		redirectAttributes.addAttribute("username", appliedJobs.getCandidateUsername());
 
-		return "redirect:/joblist";
+		return "redirect:/jobList";
 	}
 
-	// displays the candidate list for a particular job
 	@RequestMapping(value = "/candidateList")
-	public String jobViews(Map<String, Object> model, @RequestParam String name, @RequestParam String username,
+	public String jobViews(Map<String, Object> model, @RequestParam String companyName, @RequestParam String username,
 		 @RequestParam int id) {
 
-		// puts the attribute from the url
-		model.put("jobName", name);
+		model.put("companyName", companyName);
 		model.put("username", username);
 		
 
-		// gets the detail from the job id
 		List<AppliedJobs> authors = appliedJobsRepository.displayCandidates(id);
 
-		// putting value
 		model.put("values", authors);
 
 		return "candidateList";
 	}
 
-	// maps the application for all the posted jobs
 	@RequestMapping(value = "/postedJobs")
 	public String postedJobs(Map<String, Object> model, @RequestParam String username) {
 
-		// puts value from the url params
 		model.put("username", username);
 		
 
-		// diaplys all the table from the getposted job
 		List<PostedJobs> postedJobs = postedJobsRepository.getpostedjobs(username);
 		System.out.println(postedJobs);
 
-		// puts the value
 		model.put("postedJobs", postedJobs);
 
 		return "postedJobs";
 	}
 
-	// maps the deletion of job
 	@RequestMapping(value = "/deleteJob")
 	public String deleteJob(Map<String, Object> model, @RequestParam String username,
 			@RequestParam Long id, RedirectAttributes redirectAttributes) {
 
-		// delets the job using id
 		postedJobsService.delete(id);
 
-		// add params to the url
 		redirectAttributes.addAttribute("username", username);
 
 

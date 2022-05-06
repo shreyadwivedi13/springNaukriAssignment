@@ -10,7 +10,7 @@ import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories(basePackages = {"com.springNaukri.portalUsers", "com.springNaukri.jobs"})
+@EnableJpaRepositories(basePackages = {"com.springNaukri.portalUsers","com.springNaukri.jobs"})
 @EnableTransactionManagement
 public class JpaConfig {
     @Bean

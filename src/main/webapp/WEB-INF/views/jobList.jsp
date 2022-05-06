@@ -9,21 +9,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Job List</title>
+<title>all jobs available</title>
 <link href="<c:url value="./template/css/style.css" />" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 </head>
 <body>
 
-	<!-- main div covers entire page -->
 	<div id="main">
 
-		<!-- box div at the center of page with glassify effect -->
 		<div id="searchUser-container">
 
 			<div>
 
-				<!-- div contaning navbar to navigate across the dashboard -->
 				<div class="navbar" id="navbar">
 
 					<a href="/springNaukriAssignment/welcome"> <i class="fas fa-home"></i>
@@ -32,23 +28,22 @@
 
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a
-							href="/springNaukriAssignment/postJob?username=${username}&email=${email}">
-							<i class="fas fa-sticky-note"></i> Post Jobs
+							href="/springNaukriAssignment/postJob?username=${username}">
+							<i class="fas fa-sticky-note"></i> Post a new Job
 						</a>
 					</sec:authorize>
 
 					<a
-						href="/springNaukriAssignment/jobList?username=${username}&email=${email}">
-						<i class='fas fa-list'></i> All Jobs
+						href="/springNaukriAssignment/jobList?username=${username}">
+						<i class='fas fa-list'></i> Jobs available
 					</a>
 					
 					<sec:authorize access='hasAuthority("Employer")'>
-						<a href="/springNaukriAssignment/postedJobs?username=${username}&email=${email}&id=${id}">
-						<i class="fas fa-check-square"></i> My Jobs</a>
+						<a href="/springNaukriAssignment/postedJobs?username=${username}&id=${id}">
+						<i class="fas fa-check-square"></i> jobs posted by me</a>
 					</sec:authorize>
 
 
-					<!-- logouts the users by destroying current user instance in local storage and redirectiong to index.html -->
 
 					<form:form action="logout" method="POST" id="last-tag">
 						<input type="submit" value="logout">
@@ -67,7 +62,7 @@
 					<th>Job Description</th>
 					<th>EmployerUsername</th>
 					
-					<sec:authorize access='hasAuthority("Job Seeker")'>
+					<sec:authorize access='hasAuthority("candidate")'>
 						<th>Action</th>
 					</sec:authorize>
 				</tr>
@@ -83,7 +78,7 @@
 
 						<sec:authorize access='hasAuthority("candidate")'>
 							<td><a
-								href="/springNaukriAssignment/applyJob?username=${username}&id=${jobs.id}&jobName=${jobs.position}">Apply</a>
+								href="/springNaukriAssignment/applyJob?username=${username}&id=${jobs.id}&companyName=${jobs.companyName}">Apply</a>
 							</td>
 
 						</sec:authorize>

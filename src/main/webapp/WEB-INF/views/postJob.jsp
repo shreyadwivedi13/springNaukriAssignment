@@ -11,18 +11,14 @@
 <title>employer panel, job </title>
 <link href="<c:url value=" ./template/css/style.css" />"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+
 </head>
 
 <body>
-	<!-- main div covers entire page -->
 	<div id="main">
-		<!-- box div at the center of page with glassify effect -->
 		<div id="update-container">
 
 			<div>
-				<!-- div contaning navbar to navigate across the dashboard -->
 				<div class=" navbar" id="navbar">
 
 					<a href="/springNaukriAssignment/welcome"> <i class="fas fa-home"></i>
@@ -31,19 +27,19 @@
 
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a
-							href="/springNaukriAssignment/postJob?username=${username}&email=${email}">
-							<i class="fas fa-sticky-note"></i> Post Jobs
+							href="/springNaukriAssignment/postJob?username=${username}">
+							<i class="fas fa-sticky-note"></i> Post a new job
 						</a>
 					</sec:authorize>
 
 					<a
-						href="/springNaukriAssignment/joblist?username=${username}">
-						<i class='fas fa-list'></i> All Jobs
+						href="/springNaukriAssignment/jobList?username=${username}">
+						<i class='fas fa-list'></i> Jobs available
 					</a>
 					
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a href="/springNaukriAssignment/postedJobs?username=${username}">
-						<i class="fas fa-check-square"></i> My Jobs</a>
+						<i class="fas fa-check-square"></i>jobs posted by me</a>
 					</sec:authorize>
 
 
@@ -58,7 +54,7 @@
 
 			<div>
 
-			Welcome ${username}!
+			Welcome employer ${username}!
 			
 
 				<div id="form-content">
@@ -76,11 +72,6 @@
 									<form:input path="employerUsername" value="${username}"
 										disabled="true" />
 									<form:hidden path="employerUsername" value="${username}" />
-
-
-									<form:input path="employerEmail" value="${email}"
-										disabled="true" />
-									<form:hidden path="employerEmail" value="${email}" />
 
 									<form:input path="CompanyName" placeholder="Company Name"
 										required="true" />

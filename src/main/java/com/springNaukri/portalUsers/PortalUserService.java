@@ -18,10 +18,7 @@ public class PortalUserService {
 	public void save(PortalUser portalUser) {
 
 		String encodedPassword = passwordEncoder.encode(portalUser.getPassword());
-		// System.out.println(encodedPassword);
-
 		portalUser.setPassword(encodedPassword);
-
 		repo.save(portalUser);
 	}
 
@@ -33,12 +30,9 @@ public class PortalUserService {
 		return repo.findById(id).get();
 	}
 
-	public void delete(Long id) {
+	public void deleteById(Long id) {
 		repo.deleteById(id);
 	}
 
-	public List<PortalUser> search(String keyword) {
-		return repo.search(keyword);
-	}
-
+	
 }
