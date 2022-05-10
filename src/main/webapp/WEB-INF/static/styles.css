@@ -10,8 +10,8 @@
 #box1{
 	
 	/* setting up dimensions for box */
-	width: 70%;
-	height: 66%;
+	width: 100%;
+	height: 86%;
 
 	/* flex boxes for easy divs and responsiveness */
 	display: flex;
@@ -83,6 +83,9 @@
 	padding-left: 5%;
 	perspective: 1000;
 	color: #555555;
+}
+input[type="text" i] {
+    padding: 1px 2px;
 }
 
 /* flipping the form css */
@@ -263,7 +266,7 @@
 	border-radius: 4px;
 	display: block;
 	font-size: 14px;
-	padding: 10px;
+	padding: 0px;
 	width: 100%;
 }
 
@@ -394,10 +397,6 @@
 		width: 100%;
 		height: 55%;
 	}
-	#landing-page-illustration{
-		width: 100%;
-		height: 45%;
-	}
 
 	#content h2{
 		overflow: hidden;
@@ -413,8 +412,9 @@
 		font-size: 15px;
 	}
 
-	#users-button{
+	#button{
 		font-size: 15px;
+		color:#9ae7fa;
 	}
 
 	#content-span{

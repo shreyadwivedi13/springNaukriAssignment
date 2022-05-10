@@ -32,5 +32,8 @@ public class PostedJobsService {
 		repo.updatePost(jobid,position,companyName,description);
 	}
 
+	public List<PostedJobs> doneByEmployer(String username ) {
+		return (List<PostedJobs>) repo.getpostedjobs(username);
+	}
 
 }

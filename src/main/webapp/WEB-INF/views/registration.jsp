@@ -9,7 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>registration</title>
 <link href="<c:url value="./static/styles.css" />" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 <script src="./static/validation.js"></script>
 </head>
 <body>
@@ -21,9 +22,7 @@
 		<div id="box1">
 			<div id="text">
 
-				<h2 id="header">
-					Welcome!
-				</h2>
+				<h2 id="header">Welcome!</h2>
 
 				<div id="info">
 					<span>Please signup or login to access the job portal</span>
@@ -40,7 +39,7 @@
 							<form:form action="save" method="post"
 								modelAttribute="portalUser" onsubmit="return validateForm()">
 
-								<div>
+								<div class=" input-control">
 									<form:input path="name" placeholder="Full Name" required="true"
 										oninput="validateFullName()" id="full_name" />
 								</div>
@@ -54,12 +53,13 @@
 									</div>
 								</div>
 
-
-								<form:input path="username" placeholder="Username"
-									required="true" />
+								<div class=" input-control">
+								<form:input  path="username"
+									placeholder="Username" required="true"  oninput="validateUsername()" />
 								<c:if test="${param.exists != null}">
 									<i style="color: red">Username Already Exists</i>
 								</c:if>
+								</div>
 								<div id="passwordDiv" class="input-control">
 									<form:password path="password" id="password" name="password"
 										placeholder="Password" oninput="validatePassword()"
@@ -79,7 +79,7 @@
 								<p />
 								<p />
 
-								<input type="submit" value="Register">
+								<input type="submit" value="Register" class="button">
 							</form:form>
 
 							<a href="/springNaukriAssignment/login-form">Already have an

@@ -30,18 +30,18 @@
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a
 							href="/springNaukriAssignment/postJob?username=${username}">
-							<i class="fas fa-sticky-note"></i> Post a new Job
+							<i class="fas fa-clipboard"></i> Post a new Job
 						</a>
 					</sec:authorize>
 
 					<a
 						href="/springNaukriAssignment/jobList?username=${username}">
-						<i class='fas fa-list'></i> Jobs available
+						<i class='fas fa-clipboard'></i> Jobs available
 					</a>
 					
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a href="/springNaukriAssignment/postedJobs?username=${username}">
-						<i class="fas fa-check-square"></i>My Postings</a>
+						<i class="fas fa-clipboard"></i>My Postings</a>
 					</sec:authorize>
 					<form:form action="logout" method="POST" id="last-tag">
 						<input type="submit" value="logout">

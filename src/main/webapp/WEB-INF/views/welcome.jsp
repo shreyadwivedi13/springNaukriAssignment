@@ -31,21 +31,22 @@
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a
 							href="/springNaukriAssignment/postJob?username=${portalUser.username}">
-							<i class="fas fa-sticky-note"></i> Post Jobs
+							<i class="fas fa-clipboard"></i> Post Jobs
 						</a>
 					</sec:authorize>
 
 					<a
 						href="/springNaukriAssignment/jobList?username=${portalUser.username}">
-						<i class='fas fa-list'></i> All Jobs
+						<i class='fas fa-clipboard'></i> All Jobs
 					</a>
 
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a
 							href="/springNaukriAssignment/postedJobs?username=${portalUser.username}&id=${portalUser.id}">
-							<i class="fas fa-check-square"></i>My postings
+							<i class="fas fa-clipboard"></i>My postings
 						</a>
 					</sec:authorize>
+					
 					<!-- logouts the users by destroying current user instance in local storage and redirectiong to index.html -->
 
 					<form:form action="logout" method="POST" id="last-tag">

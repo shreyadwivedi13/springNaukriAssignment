@@ -61,8 +61,10 @@
 					<th>CompanyName</th>
 					<th>Job Description</th>
 					<th>EmployerUsername</th>
+				
 					
-					<sec:authorize access='hasAuthority("candidate")'>
+					
+					<sec:authorize access='hasAuthority("Candidate")'>
 						<th>Action</th>
 					</sec:authorize>
 				</tr>
@@ -74,9 +76,7 @@
 						<td>${jobs.companyName}</td>
 						<td>${jobs.description}</td>
 						<td>${jobs.employerUsername}</td>
-						
-
-						<sec:authorize access='hasAuthority("candidate")'>
+						<sec:authorize access='hasAuthority("Candidate")'>
 							<td><a
 								href="/springNaukriAssignment/applyJob?username=${username}&id=${jobs.id}&companyName=${jobs.companyName}">Apply</a>
 							</td>

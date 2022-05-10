@@ -1,6 +1,8 @@
 package com.springNaukri.jobs;
 
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +19,20 @@ public class AppliedJobServices  {
 		
 		repo.save(appliedjobs);
 	}
+	//method to fetch candidates of a particular job posting 
+		public List<AppliedJobs> showCandidates(Long jobid) {
+			
+			return (List<AppliedJobs>) repo.displayCandidates(jobid);
+		}
+
+//		public void deleteApplication(Long jobid) {
+//			repo.deleteApplication(jobid);
+//			
+//		}
+
+//		public void revokeCandidacy(String username, Long jobid) {
+//			repo.unapply(username, jobid);
+//			
+//		}
 
 }

@@ -41,7 +41,7 @@
 					
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a href="/springNaukriAssignment/postedJobs?username=${username}">
-						<i class="square"></i> my postings</a>
+						<i class="fas fa-clipboard"></i> My Postings</a>
 					</sec:authorize>
 
 
