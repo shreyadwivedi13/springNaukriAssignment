@@ -45,7 +45,7 @@
 
 					
 
-					<form:form action="logout" method="POST" id="last-tag">
+					<form:form action="logout" method="POST" id="last-tag" >
 						<input type="submit" value="logout">
 					</form:form>
 

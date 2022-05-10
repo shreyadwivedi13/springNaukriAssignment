@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		try {
 		http.authorizeRequests()
-				.antMatchers("/applyJob").hasAuthority("candidate")
+				.antMatchers("/applyJob").hasAuthority("Candidate")
 				.antMatchers("/candidateList").hasAuthority("Employer")
 				.antMatchers("/jobList").authenticated()
 				.antMatchers("/postedJobs").hasAuthority("Employer")

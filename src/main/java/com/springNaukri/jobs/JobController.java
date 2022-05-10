@@ -89,7 +89,7 @@ public class JobController {
 
 	}
 
-	@RequestMapping(value = "/process-jobapplication", method = RequestMethod.POST)
+	@RequestMapping(value = "/process-jobApply", method = RequestMethod.POST)
 	public String applyJob(@ModelAttribute("appliedJobs") AppliedJobs appliedJobs,
 			RedirectAttributes redirectAttributes) {
 		try {
@@ -97,9 +97,9 @@ public class JobController {
 
 			redirectAttributes.addAttribute("username", appliedJobs.getCandidateUsername());
 
-			return "redirect:/jobList";
+			return null;
 		} catch (Exception e) {
-			log.error("error in applyJob");
+			log.error("error in apply button of applyJob");
 
 		}
 		return null;
@@ -109,7 +109,7 @@ public class JobController {
 
 	@RequestMapping(value = "/candidateList")
 	public String jobViews(Map<String, Object> model, @RequestParam String username, @RequestParam int id) {
-		System.out.println("candidate list");
+		//System.out.println("candidate list");
 		// model.put("companyName", companyName);
 		model.put("username", username);
 		model.put("id", id);
@@ -146,9 +146,10 @@ public class JobController {
 
 		return "postedJobs";
 	}
+	
 
 	//updates the job posts
-	@GetMapping("/updateJobPosting")
+	@GetMapping("/updateJobInfo")
 	public String updateJobPosting(@RequestParam Long jobid, @RequestParam String position,
 			@RequestParam String companyName, @RequestParam String description, @RequestParam String username, Model model) {
 

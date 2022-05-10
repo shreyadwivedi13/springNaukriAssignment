@@ -43,7 +43,7 @@
 						<a href="/springNaukriAssignment/postedJobs?username=${username}">
 						<i class="fas fa-clipboard"></i>My Postings</a>
 					</sec:authorize>
-					<form:form action="logout" method="POST" id="last-tag">
+					<form:form action="logout" method="POST" id="last-tag" <i class="fa-solid fa-power-off"></i>>
 						<input type="submit" value="logout">
 					</form:form>
 

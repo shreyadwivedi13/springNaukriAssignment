@@ -7,6 +7,18 @@
 	font-family: 'Roboto', sans-serif;
 	background-position: center;
 }
+#last-tag{
+
+  /*background-color: #80ffff;  */
+  border: none;
+  
+ /* padding: 15px 32px;*/
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+}
 #box1{
 	
 	/* setting up dimensions for box */
@@ -218,7 +230,7 @@ input[type="text" i] {
     left: 0;
     right: 0;   
     margin: auto; 
-	overflow-y: scroll;
+	/*overflow-y: scroll;*/
 	padding: 2%;
 
 	background: rgba(255, 255, 255, 0.4);

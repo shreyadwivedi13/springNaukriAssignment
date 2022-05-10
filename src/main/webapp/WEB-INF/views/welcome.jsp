@@ -49,7 +49,7 @@
 					
 					<!-- logouts the users by destroying current user instance in local storage and redirectiong to index.html -->
 
-					<form:form action="logout" method="POST" id="last-tag">
+					<form:form action="logout" method="POST" id="last-tag" >
 						<input type="submit" value="logout">
 					</form:form>
 
