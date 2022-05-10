@@ -8,11 +8,11 @@ import javax.persistence.Id;
 
 
 @Entity
-@Table(name="portal_users")
+@Table(name="portal_users",schema="project_db")
 public class PortalUser {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String name;
@@ -20,6 +20,7 @@ public class PortalUser {
 	private String username;
 	private String password;
 	private String role;
+	
 	public Long getId() {
 		return id;
 	}

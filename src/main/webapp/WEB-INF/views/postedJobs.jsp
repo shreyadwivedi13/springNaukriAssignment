@@ -10,13 +10,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Posted Jobs</title>
-<link href="<c:url value="./template/css/style.css" />" rel="stylesheet">
+<link href="<c:url value="./static/styles.css" />" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 </head>
 <body>
 
-	<div id="main">
+	<div id="page">
 
-		<div id="searchUser-container">
+		<div id="searchBar">
 
 			<div>
 
@@ -29,22 +30,22 @@
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a
 							href="/springNaukriAssignment/postJob?username=${username}">
-							<i class="fas fa-sticky-note"></i> Post a new Jobs
+							<i class="fas fa-clipboard"></i> Post a new Jobs
 						</a>
 					</sec:authorize>
 
 					<a
 						href="/springNaukriAssignment/jobList?username=${username}">
-						<i class='fas fa-list'></i>  Jobs available
+						<i class='fas fa-clipboard'></i>  Jobs available
 					</a>
 					
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a href="/springNaukriAssignment/postedJobs?username=${username}">
-						<i class="fas fa-check-square"></i> posted by me</a>
+						<i class="square"></i> my postings</a>
 					</sec:authorize>
 
 
-s
+
 					<form:form action="logout" method="POST" id="last-tag">
 						<input type="submit" value="logout">
 					</form:form>
@@ -78,12 +79,18 @@ s
 
 						<sec:authorize access='hasAuthority("Employer")'>
 							<td><a
-								href="/springNaukriAssignmentr/candidateList?username=${username}&id=${jobs.id}&name=${jobs.companyName}">
+								href="/springNaukriAssignment/candidateList?username=${username}&id=${jobs.id}">
+								<i class="fas fa-clipboard"></i>
 								Candidates</a>
 								<p/>
-								<a
+								<a 
 								href="/springNaukriAssignment/deleteJob?username=${username}&id=${jobs.id}">
+								<i class="fas fa-trash"></i>
 								Delete</a>
+								<a 
+								href="/springNaukriAssignment/updateJobPosting?username=${username}&id=${jobs.id}">
+								<i class="fas fa-clipboard"></i>
+								Update</a>
 							</td>
 
 						</sec:authorize>

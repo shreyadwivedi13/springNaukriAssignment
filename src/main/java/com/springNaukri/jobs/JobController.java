@@ -3,8 +3,10 @@ package com.springNaukri.jobs;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 @Controller
 public class JobController {
+
+	private static Logger log = Logger.getLogger(JobController.class.getName());
 
 	@Autowired
 	private PostedJobsService postedJobsService;
@@ -28,11 +33,12 @@ public class JobController {
 	@Autowired
 	private AppliedJobsRepo appliedJobsRepository;
 
+	//displays the portal with post job feature.
 	@GetMapping("/postJob")
 	public String showEmployerPanel(Map<String, Object> model, @RequestParam String username) {
 
 		model.put("username", username);
-		
+
 		PostedJobs postedJobs = new PostedJobs();
 		model.put("postedJobs", postedJobs);
 
@@ -40,17 +46,19 @@ public class JobController {
 
 	}
 
+	//
 	@RequestMapping(value = "/process-jobposting", method = RequestMethod.POST)
 	public String saveCandidate(@ModelAttribute("postedJobs") PostedJobs postedJobs,
 			RedirectAttributes redirectAttributes) {
 
 		redirectAttributes.addAttribute("username", postedJobs.getEmployerUsername());
-		
 
 		postedJobsService.save(postedJobs);
 
 		return "redirect:/postJob";
 	}
+
+	//displays the portal with all jobs.
 
 	@GetMapping("/jobList")
 	public ModelAndView showjoblist(@RequestParam String username) {
@@ -63,13 +71,16 @@ public class JobController {
 
 	}
 
+	//displays the portal with apply job feature.
+
 	@GetMapping("/applyJob")
-	public String applyJob(Map<String, Object> model, @RequestParam String username,
-			@RequestParam Long id, @RequestParam String position) {
+	public String applyJob(Map<String, Object> model, @RequestParam String username, @RequestParam Long id,
+			@RequestParam String companyName) {
 
 		model.put("username", username);
 		model.put("id", id);
-		model.put("position", position);
+		model.put("companyName", companyName);
+		// model.put("position", position);
 
 		AppliedJobs appliedJobs = new AppliedJobs();
 		model.put("appliedJobs", appliedJobs);
@@ -81,25 +92,31 @@ public class JobController {
 	@RequestMapping(value = "/process-jobapplication", method = RequestMethod.POST)
 	public String applyJob(@ModelAttribute("appliedJobs") AppliedJobs appliedJobs,
 			RedirectAttributes redirectAttributes) {
+		try {
+			appliedJobsService.save(appliedJobs);
 
-		appliedJobsService.save(appliedJobs);
+			redirectAttributes.addAttribute("username", appliedJobs.getCandidateUsername());
 
-		redirectAttributes.addAttribute("username", appliedJobs.getCandidateUsername());
+			return "redirect:/jobList";
+		} catch (Exception e) {
+			log.error("error in applyJob");
 
-		return "redirect:/jobList";
+		}
+		return null;
 	}
 
+	//displays the portal with candidate list of a particular job.
+
 	@RequestMapping(value = "/candidateList")
-	public String jobViews(Map<String, Object> model, @RequestParam String companyName, @RequestParam String username,
-		 @RequestParam int id) {
-
-		model.put("companyName", companyName);
+	public String jobViews(Map<String, Object> model, @RequestParam String username, @RequestParam int id) {
+		System.out.println("candidate list");
+		// model.put("companyName", companyName);
 		model.put("username", username);
-		
+		model.put("id", id);
 
-		List<AppliedJobs> authors = appliedJobsRepository.displayCandidates(id);
+		List<AppliedJobs> candidtes = appliedJobsRepository.displayCandidates(id);
 
-		model.put("values", authors);
+		model.put("values", candidtes);
 
 		return "candidateList";
 	}
@@ -108,7 +125,6 @@ public class JobController {
 	public String postedJobs(Map<String, Object> model, @RequestParam String username) {
 
 		model.put("username", username);
-		
 
 		List<PostedJobs> postedJobs = postedJobsRepository.getpostedjobs(username);
 		System.out.println(postedJobs);
@@ -118,16 +134,70 @@ public class JobController {
 		return "postedJobs";
 	}
 
+	//deletes job entry.
+
 	@RequestMapping(value = "/deleteJob")
-	public String deleteJob(Map<String, Object> model, @RequestParam String username,
-			@RequestParam Long id, RedirectAttributes redirectAttributes) {
+	public String deleteJob(Map<String, Object> model, @RequestParam String username, @RequestParam Long id,
+			RedirectAttributes redirectAttributes) {
 
 		postedJobsService.delete(id);
 
 		redirectAttributes.addAttribute("username", username);
 
-
 		return "postedJobs";
 	}
 
+	//updates the job posts
+	@GetMapping("/updateJobPosting")
+	public String updateJobPosting(@RequestParam Long jobid, @RequestParam String position,
+			@RequestParam String companyName, @RequestParam String description, @RequestParam String username, Model model) {
+
+		try {
+		PostedJobs updateJob = new PostedJobs();
+		
+		updateJob.setId(jobid);
+		updateJob.setCompanyName(companyName);
+		updateJob.setPosition(position);
+		updateJob.setDescription(description);
+
+		model.addAttribute(updateJob);
+		
+		model.addAttribute(username);
+
+		return "updateJobInfo";
+		}
+		catch (Exception e) {
+			log.error("Error with loading update job");
+		}
+		
+		return null;
+		
+	}
+	
+	@RequestMapping(value = "/processPostUpdate", method = RequestMethod.POST)
+	public String updateTheJob(@ModelAttribute("postedJobs") PostedJobs postedJobs) {
+
+		try {
+
+			Long jobid = postedJobs.getId();
+			String position = postedJobs.getPosition();
+			String companyName = postedJobs.getCompanyName();
+			String description = postedJobs.getDescription();
+
+			// updates in the database
+			postedJobsService.updateJob(jobid, position, companyName, description);
+
+			return "redirect:/welcome";
+		} catch (Exception e) {
+			log.error("Error with processing job update");
+		}
+		return null;
+	}
+	
+	
+	
+
+	
 }
+
+

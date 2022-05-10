@@ -10,13 +10,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>all jobs available</title>
-<link href="<c:url value="./template/css/style.css" />" rel="stylesheet">
-</head>
+<link href="<c:url value="./static/styles.css" />" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"></head>
 <body>
 
-	<div id="main">
+	<div id="page">
 
-		<div id="searchUser-container">
+		<div id="searchBar">
 
 			<div>
 
@@ -29,18 +29,18 @@
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a
 							href="/springNaukriAssignment/postJob?username=${username}">
-							<i class="fas fa-sticky-note"></i> Post a new Job
+						   <i class="fas fa-clipboard"></i> Post a new Job
 						</a>
 					</sec:authorize>
 
 					<a
 						href="/springNaukriAssignment/jobList?username=${username}">
-						<i class='fas fa-list'></i> Jobs available
+						<i class="fas fa-clipboard"></i> Jobs available
 					</a>
 					
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a href="/springNaukriAssignment/postedJobs?username=${username}&id=${id}">
-						<i class="fas fa-check-square"></i> jobs posted by me</a>
+						<i class="fas fa-clipboard"></i>My postings</a>
 					</sec:authorize>
 
 
@@ -55,7 +55,7 @@
 			
 			<table id="displayTable"
 				style="margin-top: auto; margin-bottom: auto;">
-				<tr class="header">
+				<tr class="headers">
 					<th>Job Id</th>
 					<th>position</th>
 					<th>CompanyName</th>

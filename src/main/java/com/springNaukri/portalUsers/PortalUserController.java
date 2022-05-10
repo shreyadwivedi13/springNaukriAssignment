@@ -16,10 +16,8 @@ public class PortalUserController {
 
 	@Autowired
 	private PortalUserService portalUserService;
-
 	@Autowired
 	private PortalUserRepository portalUserRepository;
-
 	@RequestMapping(value = "/login-form", method = RequestMethod.GET)
 	public String login(Model model, String error, String logout) {
 		return "login-form";
@@ -31,7 +29,7 @@ public class PortalUserController {
 		
 		auth=SecurityContextHolder.getContext().getAuthentication();
 		String username= auth.getName();
-		PortalUser portalUser =portalUserRepository.getUserByUsername(username);
+		PortalUser portalUser = portalUserRepository.getUserByUsername(username);
 		model.addAttribute(portalUser);
 		return "welcome";
 
@@ -39,9 +37,9 @@ public class PortalUserController {
 	
 	
 	@RequestMapping("/")
-	public String newRegstration(Map<String, Object> model) {
+	public String newRegistration(Map<String, Object> model) {
 		PortalUser portalUser = new PortalUser();
-		model.put("PortalUser", portalUser);
+		model.put("portalUser", portalUser);
 		return "registration";
 	}
 	

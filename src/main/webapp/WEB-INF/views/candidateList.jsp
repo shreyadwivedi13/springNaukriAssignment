@@ -10,13 +10,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Candidate List</title>
-<link href="<c:url value="./template/css/style.css" />" rel="stylesheet">
-</head>
+<link href="<c:url value="./static/styles.css" />" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"></head>
 <body>
 
-	<div id="main">
+	<div id="page">
 
-		<div id="searchUser-container">
+		<div id="searchBar">
 			
 			
 			<div>
@@ -35,13 +35,13 @@
 					</sec:authorize>
 
 					<a
-						href="/springNaukriAssignment/joblist?username=${username}">
+						href="/springNaukriAssignment/jobList?username=${username}">
 						<i class='fas fa-list'></i> Jobs available
 					</a>
 					
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a href="/springNaukriAssignment/postedJobs?username=${username}">
-						<i class="fas fa-check-square"></i> jobs posted by mee</a>
+						<i class="fas fa-check-square"></i>My Postings</a>
 					</sec:authorize>
 					<form:form action="logout" method="POST" id="last-tag">
 						<input type="submit" value="logout">
@@ -54,17 +54,19 @@
 			
 			<table id="displayTable" style="margin-top: auto; margin-bottom: auto;">
 					<tr>
-					 <th>CandidateId</th> 
-					 <th>CandidateUsername</th>
 						<th>Job Id</th>
+					 <th>Candidate id</th> 
+					 <th>Candidate Username</th>
+						
 					
 					</tr>
 
 					<c:forEach items="${values}" var="jobs">
 						<tr>
+							<td>${jobs.jobid}</td>
 							<td>${jobs.id}</td>
 							<td>${jobs.candidateUsername}</td>
-							<td>${jobs.jobid}</td>
+							
 
 		
 

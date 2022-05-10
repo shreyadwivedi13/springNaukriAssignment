@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
+//scans packages with com.naukri to enable webMVC to them
 @ComponentScan("com.springNaukri")
 @EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -40,7 +41,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-	   log.info(registry.addResourceHandler("/template/**").addResourceLocations("/WEB-INF/template/"));
+		registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");
 	}
 	
 

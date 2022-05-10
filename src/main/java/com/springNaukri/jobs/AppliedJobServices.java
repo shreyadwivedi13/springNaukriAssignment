@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class AppliedJobServices implements AppliedJobsServicesImpl {
+public class AppliedJobServices  {
 	
 	@Autowired
 	AppliedJobsRepo repo;
-	
+
 	public void save(AppliedJobs appliedjobs) {
 		
 		repo.save(appliedjobs);

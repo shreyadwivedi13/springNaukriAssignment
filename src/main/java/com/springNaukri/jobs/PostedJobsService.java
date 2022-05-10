@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-
+@Transactional
 public class PostedJobsService {
 
 	@Autowired
@@ -17,14 +17,19 @@ public class PostedJobsService {
 		repo.save(jobs);
 	}
 	
-	@Transactional
+	
 	public List<PostedJobs> listAll() {
 		return (List<PostedJobs>) repo.findAll();
 	}
 	
-	@Transactional
+	
 	public void delete(Long id) {
 		repo.deleteById(id);
+	}
+
+	public void updateJob(Long jobid, String position, String companyName, String description) {
+		// TODO Auto-generated method stub
+		repo.updatePost(jobid,position,companyName,description);
 	}
 
 
