@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Posted Jobs</title>
+<title>My applications</title>
 <link href="<c:url value="./static/styles.css" />" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 </head>
@@ -43,6 +43,13 @@
 						<a href="/springNaukriAssignment/postedJobs?username=${username}">
 						<i class="fas fa-clipboard"></i> My Postings</a>
 					</sec:authorize>
+					
+					<sec:authorize access='hasAuthority("Candidate")'>
+						<a
+							href="/springNaukriAssignment/postJob?username=${username}">
+							<i class="fas fa-clipboard"></i> My applications
+						</a>
+					</sec:authorize>
 
 
 
@@ -66,6 +73,9 @@
 					<sec:authorize access='hasAuthority("Employer")'>
 						<th>Action</th>
 					</sec:authorize>
+					<sec:authorize access='hasAuthority("Employer")'>
+						<th>Unapply</th>
+					</sec:authorize>
 				</tr>
 
 				<c:forEach items="${postedJobs}" var="jobs">
@@ -87,16 +97,19 @@
 								href="/springNaukriAssignment/deleteJob?username=${username}&id=${jobs.id}">
 								<i class="fas fa-trash"></i>
 								Delete</a>
-								<sec:authorize access='hasAuthority("Employer")'>
-						<a
-							href="/springNaukriAssignment/updateJobInfo?id=${jobs.id}&position=${jobs.position}&companyName=${jobs.companyName}&description=${jobs.description}&username=${username}">
-							<i class="fas fa-clipboard"></i>Update
-						</a>
-					</sec:authorize>
-								
+								<a 
+								href="/springNaukriAssignment/updateJobPosting?username=${username}&id=${jobs.id}">
+								<i class="fas fa-clipboard"></i>
+								Update</a>
 							</td>
 
 						</sec:authorize>
+						<sec:authorize access='hasAuthority("Candidate")'>
+						<a 
+								href="/springNaukriAssignment/unapplyJob?username=${username}&id=${jobs.id}">
+								<i class="fas fa-trash"></i>
+								unapply</a>
+					</sec:authorize>
 						
 						
 					</tr>

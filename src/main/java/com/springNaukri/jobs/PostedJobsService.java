@@ -35,5 +35,8 @@ public class PostedJobsService {
 	public List<PostedJobs> doneByEmployer(String username ) {
 		return (List<PostedJobs>) repo.getpostedjobs(username);
 	}
+	public List<PostedJobs> unappliedJobs(String username) {
+		return (List<PostedJobs>) repo.unappliedJobs(username);
+	}
 
 }

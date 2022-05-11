@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -5,16 +6,18 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="ISO-8859-1">
-<title>Update Job</title>
+<title>update info</title>
 <link href="<c:url value="./static/styles.css" />" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
-</head>
-<body>
 
-	<div id="page">
-		<div id="update-container">
+</head>
+
+<body>
+<div class="postJob-wrapper">
+		<div id="main-container">
 
 			<div>
 				<div class=" navbar" id="navbar">
@@ -26,21 +29,22 @@
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a
 							href="/springNaukriAssignment/postJob?username=${username}">
-							<i class="fas fa-clipboard"></i> Post Jobs
+							<i class="fas fa-clipboard"></i> Post a new job
 						</a>
 					</sec:authorize>
 
 					<a
 						href="/springNaukriAssignment/jobList?username=${username}">
-						<i class='fas fa-clipboard'></i> all jobs
+						<i class='fas fa-clipboard'></i> Jobs available
 					</a>
 					
 					<sec:authorize access='hasAuthority("Employer")'>
 						<a href="/springNaukriAssignment/postedJobs?username=${username}">
-						<i class="fas fa-clipboard"></i> My postings</a>
+						<i class="fas fa-clipboard"></i>my postings</a>
 					</sec:authorize>
 
 
+					
 
 					<form:form action="logout" method="POST" id="last-tag" >
 						<input type="submit" value="logout">
@@ -51,33 +55,34 @@
 
 			<div>
 
-			Welcome
+<h2>			Welcome  ${username}!
+</h2>
 			
 
-				<div id="dets">
-					<div class="box2">
+				
 						<div class="form" id="form">
 
+					
 							<div class="page1">
 
-								<h1 class="title">Post a Job</h1>
+								<h1 class="title">update Job</h1>
 
-								<form:form action="processPostUpdate/?username=${username}" method="POST"
-									modelAttribute="postedJobs">
+								<form:form action="processPostUpdate/?username=${username}"
+									method="POST" modelAttribute="postedJobs">
 
-									<form:hidden path="employerUsername" value="${username}"/>
-									<form:hidden path="id" value="${jobid}" />
+									<form:hidden path="employerUsername" value="${username}" />
+									<form:hidden path="id" value="${id}" />
 
-									<form:input path="CompanyName" placeholder="Company Name"
-										default = "${companyName}" required="true" />
-									<form:input path="role" placeholder="role"
-										default = "${role}" required="true" />
-									<form:textarea path="Description" placeholder="Description"
-										default = "${description}" required="true" />
-									<p />
-									<p />
+									<form:input path="companyName" placeholder="Company Name"
+										default="${companyName}" required="true" />
+									<form:input path="position" placeholder="position" default="${position}"
+										required="true" />
+									<form:textarea path="description" placeholder="Description"
+										default="${description}" required="true" rows="6" />
+										<br/>
+										<br/>
 
-									<input type="submit" value="Post Job">
+									<input type="submit" value="update">
 								</form:form>
 
 							</div>
@@ -85,9 +90,9 @@
 					</div>
 
 				</div>
-			</div>
+			
 
 		</div>
-		</div>
 </body>
+
 </html>

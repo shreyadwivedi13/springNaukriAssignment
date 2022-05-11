@@ -17,81 +17,75 @@
 
 
 	<!-- main div covers entire page -->
-	<div id="page">
 
-		<div id="box1">
+
+	<div id="box1" class="container">
+		<div class="row">
 			<div id="text">
 
-				<h2 id="header">Welcome!</h2>
+				<h1 id="header">Welcome!</h1>
 
-				<div id="info">
-					<span>Please signup or login to access the job portal</span>
-				</div>
+
+
+				<p class="registration-description">Please signup or login to
+					access the job portal</p>
+
 			</div>
 
-
-			<div id="dets">
-				<div class="box2">
-					<div class="form" id="form">
-
-						<div class="page1">
-							<h1 class="title">Register</h1>
-							<form:form action="save" method="post"
-								modelAttribute="portalUser" onsubmit="return validateForm()">
-
-								<div class=" input-control">
-									<form:input path="name" placeholder="Full Name" required="true"
-										oninput="validateFullName()" id="full_name" />
-								</div>
+			<form:form action="save" method="post" modelAttribute="portalUser" class="signup-form"
+				onsubmit="return validateForm()">
+			<h2 class="title">Register</h2>
+	
+			
+					<form:input path="name" placeholder="Full Name" required="true"
+						oninput="validateFullName()" id="full_name" />
+				
 
 
-								<div id="emailDiv" class="input-control">
-									<form:input path="email" placeholder="email" id="email"
-										name="email" oninput="validateEmail()" required="true" />
-									<div class="error" id="emailError">
-										<form:errors path="email" cssStyle="color:#ff3860"></form:errors>
-									</div>
-								</div>
-
-								<div class=" input-control">
-								<form:input  path="username"
-									placeholder="Username" required="true"  oninput="validateUsername()" />
-								<c:if test="${param.exists != null}">
-									<i style="color: red">Username Already Exists</i>
-								</c:if>
-								</div>
-								<div id="passwordDiv" class="input-control">
-									<form:password path="password" id="password" name="password"
-										placeholder="Password" oninput="validatePassword()"
-										required="true" />
-									<div id="passwordError" class="error">
-										<form:errors path="password" cssStyle="color:#ff3860"></form:errors>
-									</div>
-								</div>
-						
-					Please Select the userType	
-					<form:select path="role" required="true">
-									<option value="" disabled selected>Choose User Type</option>
-									<form:option value="Candidate"></form:option>
-									<form:option value="Employer"></form:option>
-								</form:select>
-
-								<p />
-								<p />
-
-								<input type="submit" value="Register" class="button">
-							</form:form>
-
-							<a href="/springNaukriAssignment/login-form">Already have an
-								account login</a>
-
-						</div>
+				<div id="emailDiv">
+					<form:input path="email" placeholder="Email" id="email"
+						name="email" oninput="validateEmail()" required="true" />
+					<div class="error" id="emailError">
+						<form:errors path="email" cssStyle="color:#ff3860"></form:errors>
 					</div>
 				</div>
-			</div>
+
+				
+					<form:input path="username" placeholder="Username" required="true"
+						oninput="validateUsername()" />
+					<c:if test="${param.exists != null}">
+						<i style="color: red">Username Already Exists</i>
+					</c:if>
+				
+				<div id="passwordDiv">
+					<form:password path="password" id="password" name="password"
+						placeholder="Password" oninput="validatePassword()"
+						required="true" />
+					<div id="passwordError" class="error">
+						<form:errors path="password" cssStyle="color:#ff3860"></form:errors>
+					</div>
+				</div>
+						
+					Please select the user role:	
+					<form:select path="role" required="true">
+					<option value="" disabled selected>Choose User Type</option>
+					<form:option value="Candidate"></form:option>
+					<form:option value="Employer"></form:option>
+				</form:select>
+
+				<p />
+				<p />
+
+				<input type="submit" value="Register" class="button">
+					<a href="/springNaukriAssignment/login-form">Already have an
+				account login</a>
+			</form:form>
+
+		
+
+
+
 		</div>
-
 	</div>
-
 </body>
 </html>

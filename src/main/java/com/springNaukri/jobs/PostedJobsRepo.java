@@ -26,6 +26,6 @@ public interface PostedJobsRepo extends CrudRepository<PostedJobs, Long> {
 	public List<PostedJobs> getjobapplication(@Param("username") String username);
 
 	//unapplied job postings
-	@Query("select jobs from PostedJobs jobs where jobs.id not in (select appliedjob.user_id from AppliedJobs appliedjob where appliedjob.candidateUsername = :username)")
+	@Query("select jobs from PostedJobs jobs where jobs.id not in (select appliedjob.jobid from AppliedJobs appliedjob where appliedjob.candidateUsername = :username)")
 	public List<PostedJobs> unappliedJobs(@Param("username") String username);
 }

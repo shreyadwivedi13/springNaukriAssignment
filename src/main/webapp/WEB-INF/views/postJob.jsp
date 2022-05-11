@@ -15,8 +15,8 @@
 </head>
 
 <body>
-	<div id="page">
-		<div id="update-container">
+<div class="postJob-wrapper">
+		<div id="main-container">
 
 			<div>
 				<div class=" navbar" id="navbar">
@@ -54,11 +54,11 @@
 
 			<div>
 
-			Welcome employer ${username}!
+<h2>			Welcome  ${username}!
+</h2>
 			
 
-				<div id="dets">
-					<div class="box2">
+				
 						<div class="form" id="form">
 
 					
@@ -78,7 +78,7 @@
 									<form:input path="position" placeholder="role in company"
 										required="true" />
 									<form:textarea path="Description" placeholder="Description"
-										required="true" />
+										required="true" rows="6"/>
 										<br/>
 										<br/>
 
@@ -90,9 +90,8 @@
 					</div>
 
 				</div>
-			</div>
+			
 
-		</div>
 		</div>
 </body>
 

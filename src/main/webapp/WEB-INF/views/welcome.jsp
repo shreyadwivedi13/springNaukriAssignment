@@ -16,10 +16,10 @@
 	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 </head>
 <body>
-	<div id="page">
+	<div id="userInfo-wrapper">
 		<!-- box div at the center of page with glassify effect -->
 		<div id="main-container">
-			<div>
+			
 
 				<!-- div contaning navbar to navigate across the dashboard -->
 				<div class="navbar" id="navbar">
@@ -46,6 +46,7 @@
 							<i class="fas fa-clipboard"></i>My postings
 						</a>
 					</sec:authorize>
+				
 					
 					<!-- logouts the users by destroying current user instance in local storage and redirectiong to index.html -->
 
@@ -54,7 +55,7 @@
 					</form:form>
 
 				</div>
-			</div>
+			
 
 			<!-- dashboard contents -->
 			<div id="dashboard-welcome">

@@ -16,7 +16,6 @@ public class AppliedJobServices  {
 	AppliedJobsRepo repo;
 
 	public void save(AppliedJobs appliedjobs) {
-		
 		repo.save(appliedjobs);
 	}
 	//method to fetch candidates of a particular job posting 
@@ -30,9 +29,14 @@ public class AppliedJobServices  {
 //			
 //		}
 
-//		public void revokeCandidacy(String username, Long jobid) {
-//			repo.unapply(username, jobid);
+		public void unapply(Long id) {
+			repo.deleteById(id);
+		}
+//		
+//		public List<PostedJobs> appliedByMe(String username) {
 //			
+//			return (List<PostedJobs>) repo.appliedByMe(username);
 //		}
+
 
 }

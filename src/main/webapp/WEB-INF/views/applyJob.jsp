@@ -12,32 +12,29 @@
 	href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 </head>
 <body>
-	<div id="page"></div>
-	<div id="box1">
-		<br> <br>
-
-
-		<div id="dets">
-			<div class="page1">
-				<form:form action="process-jobApply" method="POST"
-					modelAttribute="appliedJobs">
-					<h3>Apply for ${companyName}</h3>
-jobid:
-<form:input path="id" value="${id}" disabled="true" />
-					<br>
-candidate Username:
-<form:input path="candidateUsername" value="${username}" disable="true" />
-					<p></p>
-					<input type="submit" value="apply">
+		<div class="container">
+			<form:form method="POST" modelAttribute="appliedJobs">
+				<h1>Apply for ${companyName}</h1>
+							jobid:
+								<form:input path="id" value="${id}" disabled="true" />
+				<br>
+					candidate Username:
+					<form:input path="candidateUsername" value="${username}"
+					disabled="true" />
+				
+				<br>
+				<a
+					href="/springNaukriAssignment/process-jobApply?username=${username}&id=${id}&companyName=${companyName}">apply
+					job</a>
 					<br>
 					<br>
-					<a href="/springNaukriAssignment/jobList?username=${username}">
-						<i class='fas fa-clipboard'></i> other jobs?
-					</a>
-				</form:form>
+				<a href="/springNaukriAssignment/jobList?username=${username}">
+					<i class='fas fa-clipboard'></i> other jobs?
+				</a>
+			</form:form>
 
-			</div>
 		</div>
-	</div>
+
+	
 </body>
 </html>
