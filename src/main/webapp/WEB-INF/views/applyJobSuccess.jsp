@@ -8,6 +8,6 @@
 </head>
 <script>
   alert("job applied successfully!"); 
-    window.location.href = "springNaukriAssignment/jobList?usernam${username}";
+    window.location.href="/springNaukriAssignment/jobList?username=${username}";
 </script>
 </html>

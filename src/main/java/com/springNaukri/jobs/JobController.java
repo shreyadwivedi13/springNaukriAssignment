@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 @Controller
 public class JobController {
 
@@ -33,7 +32,7 @@ public class JobController {
 	@Autowired
 	private AppliedJobsRepo appliedJobsRepository;
 
-	//displays the portal with post job feature.
+	// displays the portal with post job feature.
 	@GetMapping("/postJob")
 	public String showEmployerPanel(Map<String, Object> model, @RequestParam String username) {
 
@@ -46,7 +45,7 @@ public class JobController {
 
 	}
 
-	//
+	//process that will save job posting to the databse
 	@RequestMapping(value = "/process-jobposting", method = RequestMethod.POST)
 	public String saveCandidate(@ModelAttribute("postedJobs") PostedJobs postedJobs,
 			RedirectAttributes redirectAttributes) {
@@ -58,8 +57,7 @@ public class JobController {
 		return "redirect:/postJob";
 	}
 
-	//displays the portal with all jobs.
-
+	// displays the portal with all jobs.
 	@GetMapping("/jobList")
 	public ModelAndView showjoblist(@RequestParam String username) {
 
@@ -71,8 +69,7 @@ public class JobController {
 
 	}
 
-	//displays the portal with apply job feature.
-
+	// displays the portal with apply job feature.
 	@GetMapping("/applyJob")
 	public String applyJob(Map<String, Object> model, @RequestParam String username, @RequestParam Long id,
 			@RequestParam String companyName) {
@@ -84,43 +81,25 @@ public class JobController {
 
 		AppliedJobs appliedJobs = new AppliedJobs();
 		model.put("appliedJobs", appliedJobs);
-		System.out.println("hi wassssssss  here");
 		return "applyJob";
 
 	}
 
+	//will redirect the succesjobApply url to job apply page.
 	@RequestMapping(value = "/process-jobApply")
 	public String ap(@RequestParam String username, @RequestParam Long id,
 			@RequestParam String companyName){
-		System.out.println("hi ia am here");
-		System.out.println(username);
-		System.out.println(id);
-		//System.out.println(companyName);
+
 		AppliedJobs appliedJobs= new AppliedJobs();
 		appliedJobs.setCandidateUsername(username);
 		appliedJobs.setJobid(id);
 		appliedJobsService.save(appliedJobs);
-		return "applyJobSuccess";
+		//redirectAttributes.addAttribute("username", appliedJobs.getCandidateUsername());
+		return "applyJobSuccess";}
 
-//		try {
-//			appliedJobsService.save(appliedJobs);
-//
-//			//redirectAttributes.addAttribute("username", appliedJobs.getCandidateUsername());
-//
-//			return null;
-//		} catch (Exception e) {
-//			log.error("error in apply button of applyJob");
-//
-//		}
-//		return null;
-	}
-
-	//displays the portal with candidate list of a particular job.
-
+	//shows all the applicants
 	@RequestMapping(value = "/candidateList")
 	public String jobViews(Map<String, Object> model, @RequestParam String username, @RequestParam int id) {
-		//System.out.println("candidate list");
-		// model.put("companyName", companyName);
 		model.put("username", username);
 		model.put("id", id);
 
@@ -131,13 +110,14 @@ public class JobController {
 		return "candidateList";
 	}
 
+	//shows all the jobs posted by a particular employer
 	@RequestMapping(value = "/postedJobs")
 	public String postedJobs(Map<String, Object> model, @RequestParam String username) {
 
 		model.put("username", username);
 
 		List<PostedJobs> postedJobs = postedJobsRepository.getpostedjobs(username);
-		//System.out.println(postedJobs);
+		// System.out.println(postedJobs);
 
 		model.put("postedJobs", postedJobs);
 
@@ -156,8 +136,9 @@ public class JobController {
 //
 //		return "appliedByMe";
 //	}
-	//deletes job entry.
-
+	
+	
+	// deletes job entry.
 	@RequestMapping(value = "/deleteJob")
 	public String deleteJob(Map<String, Object> model, @RequestParam String username, @RequestParam Long id,
 			RedirectAttributes redirectAttributes) {
@@ -168,6 +149,7 @@ public class JobController {
 
 		return "postedJobs";
 	}
+
 	@RequestMapping(value = "/unapplyJob")
 	public String unapplyJob(Map<String, Object> model, @RequestParam String username, @RequestParam Long id,
 			RedirectAttributes redirectAttributes) {
@@ -179,33 +161,34 @@ public class JobController {
 		return "postedJobs";
 	}
 
-	//updates the job posts
+	// updates the job posts
 	@GetMapping("/updateJobInfo")
 	public String updateJobPosting(@RequestParam Long id, @RequestParam String position,
-			@RequestParam String companyName, @RequestParam String description, @RequestParam String username, Model model) {
+			@RequestParam String companyName, @RequestParam String description, @RequestParam String username,
+			Model model) {
 
 		try {
-		PostedJobs updateJob = new PostedJobs();
-		
-		updateJob.setId(id);
-		updateJob.setCompanyName(companyName);
-		updateJob.setPosition(position);
-		updateJob.setDescription(description);
+			PostedJobs updateJob = new PostedJobs();
 
-		model.addAttribute(updateJob);
-		
-		model.addAttribute(username);
+			updateJob.setId(id);
+			updateJob.setCompanyName(companyName);
+			updateJob.setPosition(position);
+			updateJob.setDescription(description);
 
-		return "updateJobInfo";
-		}
-		catch (Exception e) {
+			model.addAttribute(updateJob);
+
+			model.addAttribute(username);
+
+			return "updateJobInfo";
+		} catch (Exception e) {
 			log.error("Error with loading update job");
 		}
-		
+
 		return null;
-		
+
 	}
-	
+
+	//updates job posting
 	@RequestMapping(value = "/processPostUpdate", method = RequestMethod.POST)
 	public String updateTheJob(@ModelAttribute("postedJobs") PostedJobs postedJobs) {
 
@@ -225,11 +208,5 @@ public class JobController {
 		}
 		return null;
 	}
-	
-	
-	
 
-	
 }
-
-

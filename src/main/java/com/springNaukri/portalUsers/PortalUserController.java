@@ -18,12 +18,15 @@ public class PortalUserController {
 	private PortalUserService portalUserService;
 	@Autowired
 	private PortalUserRepository portalUserRepository;
+	
+	//will take you to the login page
 	@RequestMapping(value = "/login-form", method = RequestMethod.GET)
 	public String login(Model model, String error, String logout) {
 		return "login-form";
 
 	}
 	
+	//will take you to the common welcome dashboard
 	@RequestMapping(value = "/welcome")
 	public String welcome(Authentication auth, Model model) {
 		
@@ -35,7 +38,7 @@ public class PortalUserController {
 
 	}
 	
-	
+	//opens the registration page
 	@RequestMapping("/")
 	public String newRegistration(Map<String, Object> model) {
 		PortalUser portalUser = new PortalUser();
@@ -43,6 +46,7 @@ public class PortalUserController {
 		return "registration";
 	}
 	
+	//will same the registration info and redirect to loginpage
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String savePortalUser(@ModelAttribute("portalUser") PortalUser portalUser) {
 

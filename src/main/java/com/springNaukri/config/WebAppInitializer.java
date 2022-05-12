@@ -13,6 +13,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class WebAppInitializer implements WebApplicationInitializer {
 	private static Logger log = Logger.getLogger(WebApplicationInitializer.class.getName());
 
+	//for app startup
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		// TODO Auto-generated method stub

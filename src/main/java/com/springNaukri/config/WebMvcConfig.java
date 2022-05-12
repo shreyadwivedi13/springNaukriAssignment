@@ -19,6 +19,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	
 	private static Logger log = Logger.getLogger(WebMvcConfig.class.getName());
 
+	//configurations for the view part of the project
 	@Bean(name ="viewResolver")
 	public InternalResourceViewResolver getViewResolver() {
 		try {
@@ -33,12 +34,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		return null;
 	}}
 	
+	//bean for password encryption
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		
 		return new BCryptPasswordEncoder();
 	}
 	
+	//additional resources to be added in the project
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");

@@ -26,6 +26,20 @@ html, body {
         margin-bottom: 0.2em;
         line-height: 0.8;
 }
+
+.input-control.success input {
+	border-color: #09c372;
+}
+
+.input-control.error input {
+	border-color: #ff3860;
+}
+
+.input-control.error {
+	color: #ff3860;
+	font-size: 12px;
+	height: 1px;
+}
 .registration-description{
 	    margin: 0;
         font-size: 2.7rem;
@@ -46,7 +60,7 @@ input[type="text"],input[type="password"] {
     padding-block: 0.5em;
         font-size: 1.1rem;
         border-radius: 0.5em;
-    border:1px solid lightblue;
+   /* border:1px solid lightblue;*/
     
 }
 #userInfo-wrapper, .postJob-wrapper{
@@ -276,12 +290,7 @@ r div for box in middle of page */
 	background-color: #b3c0e8;
 }
 
-.input-control {
-	display: flex;
-	flex-direction: column;
-}
-
-.input-control input {
+/*.input-control input {
 	border: 2px solid #f0f0f0;
 	border-radius: 4px;
 	display: block;
@@ -289,24 +298,8 @@ r div for box in middle of page */
 	padding: 0px;
 	width: 100%;
 }
+*/
 
-.input-control input:focus {
-	outline: 0;
-}
-
-.input-control.success input {
-	border-color: #09c372;
-}
-
-.input-control.error input {
-	border-color: #ff3860;
-}
-
-.input-control .error {
-	color: #ff3860;
-	font-size: 12px;
-	height: 1px;
-}
 
 #login-toast, #signup-sucess-toast, #logout-toast, #signup-fail-toast {
 	visibility: hidden;

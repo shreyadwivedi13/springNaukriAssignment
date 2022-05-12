@@ -10,14 +10,15 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
+//for the jpa configs
 @Configuration
+//will help the jpa in finding the base repo
 @EnableJpaRepositories(basePackages = {"com.springNaukri.*"})
 @EnableTransactionManagement
 public class JpaConfig {
 	
 	private static Logger log = Logger.getLogger(JpaConfig.class.getName());
-
+	//configuring entity manager for managing table
     @Bean
     public LocalEntityManagerFactoryBean entityManagerFactory() {
     	try {
@@ -32,6 +33,8 @@ public class JpaConfig {
     	}
     	return null;
     }
+    
+    //configuring transaction manager
     @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         try{
