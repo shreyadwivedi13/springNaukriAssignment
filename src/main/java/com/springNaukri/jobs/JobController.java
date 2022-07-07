@@ -31,7 +31,7 @@ public class JobController {
 
 	@Autowired
 	private AppliedJobsRepo appliedJobsRepository;
-
+//
 	// displays the portal with post job feature.
 	@GetMapping("/postJob")
 	public String showEmployerPanel(Map<String, Object> model, @RequestParam String username) {
